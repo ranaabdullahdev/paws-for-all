@@ -1,7 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import { ToastContainer } from "react-toastify";
 
 
 const geistSans = localFont({
@@ -33,7 +32,6 @@ export default function RootLayout({ children }) {
       >
         <Navbar/>
         {children}
-        <ToastContainer/>
       </body>
     </html>
   );

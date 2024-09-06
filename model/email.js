@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 
 
-const email = new Schema({
+const emailSchema = new Schema({
 
   email: {
     type: String,
@@ -12,6 +12,8 @@ const email = new Schema({
    
   },
 });
-const EmailModel = mongoose.model("Email", email);
+// Check if the model is already compiled
+const Email = mongoose.models.Email || mongoose.model("Email", emailSchema);
 
-export default EmailModel;
+
+export default Email;

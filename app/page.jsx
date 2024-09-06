@@ -1,5 +1,3 @@
-
-
 "use client";
 import Image from "next/image";
 import main from "./assets/mainPIC.svg";
@@ -8,22 +6,23 @@ import { useState } from "react";
 import axios from "axios";
 import useToast from "./hooks/useToast";
 
+import { ToastContainer } from "react-toastify";
+
 export default function Home() {
   const [email, setEmail] = useState("");
   const { showToast } = useToast();
-
   const handleSubmit = async () => {
-    console.log("Email:", email);
     try {
-      const response = await axios.post("/api/sign-up", { email }); // Wrap email in an object
-      console.log(response);
-      if (response.success) {
-        showToast(response.message);
+      const response = await axios.post("/api/sign-up", { email })
+      console.log(response,'????????????????');
+      if (response.data.success) {
+        showToast(response.data.message,"success");
+        setEmail("");
       } else {
-        showToast(response.messageF);
+        showToast(response.data.message,'error');
       }
     } catch (error) {
-      console.error("Error while signing up:", error);
+      console.error("Error while signing up:", error.response);
     }
   };
 
@@ -34,9 +33,9 @@ export default function Home() {
           PAWS is launching soon
         </h5>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-5">
         <div className="flex flex-col gap-10 justify-center items-center p-10">
-          <div className="md:h-[665px] md:w-[500px] w-[340px] h-[450px]">
+          <div className="md:h-[600px] md:w-[450px] w-[340px] h-[450px]">
             <Image
               src={main}
               alt="Main Image"
@@ -48,7 +47,7 @@ export default function Home() {
           </h5>
         </div>
         <div className="flex flex-col items-center justify-center gap-10 p-10">
-          <div className="md:h-[550px] md:w-[540px] w-[335px] h-[335px]">
+          <div className="md:h-[510px] md:w-[500px] w-[335px] h-[335px]">
             <Image
               src={logo}
               alt="Logo"
@@ -67,10 +66,10 @@ export default function Home() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <button
-                onClick={()=>{
+                onClick={() => {
                   console.log("click");
-                  handleSubmit()
-                }} 
+                  handleSubmit();
+                }}
                 className="py-2 px-4 bg-black text-white rounded text-md md:text-xl font-bold"
               >
                 Add Email
@@ -79,6 +78,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

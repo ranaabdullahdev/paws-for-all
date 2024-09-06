@@ -1,53 +1,46 @@
+import { NextResponse } from "next/server"; 
 import dbConnect from "../../../lib/dbConnect";
 import Email from "../../../model/email";
-
 
 export async function POST(req) {
   await dbConnect();
   try {
     const { email } = await req.json();
 
-
-    const emailRegex = /.+\@.+\..+/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, message: "Please use a valid email address" },
         { status: 400 }
       );
     }
 
-
     const existingEmail = await Email.findOne({ email });
     if (existingEmail) {
-      return Response.json(
-        { success: false, message: "Email is already Submitted" },
+      return NextResponse.json(
+        { success: false, message: "Email is already submitted" },
         { status: 400 }
       );
     }
 
-    const newEmail = new Email({
-      email,
-    });
-
+    const newEmail = new Email({ email });
     await newEmail.save();
 
-    return Response.json(
+    return NextResponse.json(
       {
         success: true,
-        message: "Email Register succesfully",
+        message: "Email registered successfully",
       },
       { status: 201 }
     );
   } catch (error) {
-    console.log(error, "Error requesting email");
-    return Response.json(
+    console.error("Error requesting email", error);
+    return NextResponse.json(
       {
-        succes: false,
-        message: "Error submitting Email",
+        success: false,
+        message: "Error submitting email",
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }

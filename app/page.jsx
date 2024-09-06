@@ -40,26 +40,26 @@ export default function Home() {
 
   return (
     <div className="">
-      <div className="text-center mt-10">
-        <h5 className="font-apple text-2xl md:text-4xl font-bold">
+      <div className="text-center mt-4">
+        <h5 className="font-apple text-xl md:text-3xl font-bold">
           PAWS is launching soon
         </h5>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-5">
         <div className="flex flex-col gap-10 justify-center items-center p-10">
-          <div className="md:h-[535px] md:w-[400px] w-[340px] h-[450px]">
+          <div className="md:h-[400px] md:w-[300px] w-[260px] h-[350px]">
             <Image
               src={main}
               alt="Main Image"
               className="h-full w-full object-cover"
             />
           </div>
-          <h5 className="font-apple text-primary-100 text-2xl md:text-4xl font-bold">
+          <h5 className="font-apple text-primary-100 text-xl md:text-3xl font-bold">
             PAWS FOR ALL
           </h5>
         </div>
         <div className="flex flex-col items-center justify-center gap-10 p-10">
-          <div className="md:h-[450px] md:w-[435px] w-[335px] h-[335px]">
+          <div className="md:h-[300px] md:w-[300px] w-[240px] h-[250px]">
             <Image
               src={logo}
               alt="Logo"
@@ -67,7 +67,7 @@ export default function Home() {
             />
           </div>
           <div className="flex items-center flex-col justify-center gap-10">
-            <h2 className="text-sm md:text-xl font-bold font-apple">
+            <h2 className="text-sm md:text-lg font-bold font-apple">
               Please add an email for updates
             </h2>
             <div className="flex items-center justify-center gap-5">

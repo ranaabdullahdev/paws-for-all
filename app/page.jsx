@@ -6,22 +6,34 @@ import { useState } from "react";
 import axios from "axios";
 import useToast from "./hooks/useToast";
 
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const { showToast } = useToast();
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/sign-up", { email })
-      console.log(response,'????????????????');
+      if (email === "") return showToast("Please enter a valid email", "error");
+      if (!emailRegex.test(email)) {
+        return showToast("Please use a valid email address", "error");
+      }
+      setIsLoading(true);
+      const response = await axios.post("/api/sign-up", { email });
       if (response.data.success) {
-        showToast(response.data.message,"success");
+        showToast(response.data.message, "success");
         setEmail("");
+        setIsLoading(false);
       } else {
-        showToast(response.data.message,'error');
+        showToast(response.data.message, "error");
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error while signing up:", error.response);
     }
   };
@@ -67,12 +79,11 @@ export default function Home() {
               />
               <button
                 onClick={() => {
-                  console.log("click");
                   handleSubmit();
                 }}
                 className="py-2 px-4 bg-black text-white rounded text-md md:text-xl font-bold"
               >
-                Add Email
+                {isLoading ? "Loading..." : "Add Email"}
               </button>
             </div>
           </div>

@@ -40,14 +40,14 @@ export default function Home() {
 
   return (
     <div className="">
-      <div className="text-center mt-4">
+      <div className="text-center mt-10">
         <h5 className="font-apple text-2xl md:text-4xl font-bold">
           PAWS is launching soon
         </h5>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-10 mt-10">
         <div className="flex flex-col gap-10 justify-center items-center p-10">
-          <div className="md:h-[600px] md:w-[450px] w-[340px] h-[450px]">
+          <div className="md:h-[535px] md:w-[400px] w-[340px] h-[450px]">
             <Image
               src={main}
               alt="Main Image"
@@ -59,7 +59,7 @@ export default function Home() {
           </h5>
         </div>
         <div className="flex flex-col items-center justify-center gap-10 p-10">
-          <div className="md:h-[510px] md:w-[500px] w-[335px] h-[335px]">
+          <div className="md:h-[450px] md:w-[435px] w-[335px] h-[335px]">
             <Image
               src={logo}
               alt="Logo"

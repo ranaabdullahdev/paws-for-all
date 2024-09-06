@@ -2,10 +2,21 @@ import dbConnect from "../../../lib/dbConnect";
 import Email from "../../../model/email";
 
 
-export async function POST(req: Request) {
+export async function POST(req) {
   await dbConnect();
   try {
     const { email } = await req.json();
+
+
+    const emailRegex = /.+\@.+\..+/;
+    if (!emailRegex.test(email)) {
+      return Response.json(
+        { success: false, message: "Please use a valid email address" },
+        { status: 400 }
+      );
+    }
+
+
     const existingEmail = await Email.findOne({ email });
     if (existingEmail) {
       return Response.json(
@@ -13,6 +24,7 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
     const newEmail = new Email({
       email,
     });

@@ -28,13 +28,13 @@ export default function Home() {
         showToast(response.data.message, "success");
         setEmail("");
         setIsLoading(false);
-      } else {
-        showToast(response.data.message, "error");
-        setIsLoading(false);
       }
+      consolw.log("response", response);
     } catch (error) {
       setIsLoading(false);
-      console.error("Error while signing up:", error.response);
+      showToast(error.response.data.message, "error");
+
+      console.error("Error while signing up:", error.response.data);
     }
   };
 
@@ -73,7 +73,7 @@ export default function Home() {
             <div className="flex items-center justify-center gap-5">
               <input
                 type="email"
-                className="p-2 border border-primary-100 rounded"
+                className="p-2 border bg-transparent border-primary-100 rounded"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -81,7 +81,7 @@ export default function Home() {
                 onClick={() => {
                   handleSubmit();
                 }}
-                className="py-2 px-4 bg-black text-white rounded text-md md:text-xl font-bold"
+                className="py-3 px-4 bg-black text-white rounded text-sm md:text-md font-bold"
               >
                 {isLoading ? "Loading..." : "Add Email"}
               </button>

@@ -1,8 +1,15 @@
+"use client";
 import Image from "next/image";
-import main from "@/app/assets/mainPic.svg";
-import logo from "@/app/assets/logoSvg.svg";
+import main from "./assets/mainPic.svg";
+import logo from "./assets/logoSvg.svg";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const handleSubmit = async () => {
+    const response = await post("/api/sign-up", email);
+    console.log(response);
+  };
   return (
     <div className="">
       <div className="text-center mt-4">
@@ -31,8 +38,12 @@ export default function Home() {
               <input
                 type="text"
                 className="p-2 border border-primary-100 rounded "
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <button className="py-2  px-4 bg-black text-white rounded text-md md:text-xl  font-bold">
+              <button
+                onClick={handleSubmit}
+                className="py-2  px-4 bg-black text-white rounded text-md md:text-xl  font-bold"
+              >
                 Add Email
               </button>
             </div>

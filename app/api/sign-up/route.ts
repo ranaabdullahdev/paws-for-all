@@ -1,5 +1,5 @@
-import dbConnect from "@/lib/dbConnect";
-import Email from "@/model/email";
+import dbConnect from "../../../lib/dbConnect";
+import Email from "../../../model/email";
 
 
 export async function POST(req: Request) {

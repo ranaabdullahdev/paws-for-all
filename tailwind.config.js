@@ -7,9 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        apple: ['apple'],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      primary: {100:"#FB8500"},
       },
     },
   },

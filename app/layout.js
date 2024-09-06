@@ -1,8 +1,14 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistApple = localFont({
+  src: "./fonts/Apple-Days.ttf",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
@@ -20,9 +26,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable}${geistApple.variable} antialiased h-screen`}
       >
+        <Navbar/>
         {children}
       </body>
     </html>

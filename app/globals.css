@@ -2,23 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+@import url('./fonts/stylesheet.css');
 body {
-  color: var(--foreground);
-  background: var(--background);
+  background-color: #fef9f3;
   font-family: Arial, Helvetica, sans-serif;
 }
+/* 
+* {
+  border: 1px solid red;
+} */
+
+
 
 @layer utilities {
   .text-balance {
